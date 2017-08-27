@@ -1,0 +1,73 @@
+@import "compass/css3";
+
+.circle {
+  background-color: #F19231;
+  height: 40px;
+  width: 40px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+.circle1 {
+  background-color: #F19231;
+  height: 40px;
+  width: 40px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  margin: 20px;
+}
+.circle2 {
+  background-color: #F19231;
+  height: 40px;
+  width: 40px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  margin: 40px;
+}
+
+
+.circle:hover {
+  background-color: #F5D0AA;
+}
+.circle1:hover {
+  background-color: #F5D0AA;
+}
+.circle2:hover {
+  background-color: #F5D0AA;
+}
+
+
+
+.box {
+  background-color: #9A2720;
+  height: 200px;
+  width: 200px;
+}
+
+.purple {
+  background-color: #571D69;
+}
+
+.instructions {
+  position: absolute;
+  top: 10px;
+  left: 90px;
+
+}
+
+.instruction1 {
+  position: absolute;
+  top: 10px;
+  left: 90px;
+  margin: 20px;
+
+}
+.instruction2 {
+  position: absolute;
+  top: 10px;
+  left: 90px;
+  margin: 40px;
+
+}

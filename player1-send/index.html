@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<title>send-object-version</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+
+<script type="text/javascript" src="firebase_3.6.1.js"></script>
+<script type="text/javascript" src="webrtc.js"></script>
+
+
+
+
+<!-- 	<link rel="stylesheet" type="text/css" href="./style/examples.css"> -->
+
+	<script type="text/javascript">
+		// jshint ignore: start
+	</script>
+
+</head>
+<body>
+  <h1></h1>
+
+  <canvas id = "drawing"
+          height = "2500"
+          width = "2500">
+    <p>Canvas not supported!</p>
+  </canvas>
+
+</body>
+
+
+
+<script type="text/javascript">
+//////////////////////////////////////////////////////////////////////////////////
+var p1Scr = 0;
+var pl1Score = document.getElementById("plr1");
+var pl2Score = document.getElementById("plr2");
+var pl3Score = document.getElementById("plr3");
+
+//////////////////////////////////////////////////////////////////////////////////
+var arrOne = ["#3B7F6F", "#C2FFF1", "#76FFDE", "#617F78", "#5ECCB2"];
+var arrTwo = ["#F19231", "#FFC080", "#FF9A34", "#7F6040", "#CC7C29"];
+var arrThree = ["#DAC0F1", "#C27EFF", "#E6CBFF", "#613F7F", "#B8A2CC"];
+
+var x, y, c, w, xLength, yLength, plusMinusH, plusMinusV;
+
+var p3;
+var i=0;
+
+var drawing = document.getElementById("drawing");
+var con = drawing.getContext("2d");
+x = 0;
+y = 0;
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
+function p1Score(){
+
+	p1Scr = p1Scr + 1;
+	console.log("player 1 score is " + p1Scr);
+
+	pl1Score.textContent = p1Scr;
+
+	//to send an object we must convert it to a string
+		dataChannel.send(JSON.stringify({
+			player1:p1Scr
+		}));
+
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+var handleDataChannelMessage = function(event) {
+  // console.log('this is the sender: ' + event.data);
+
+  	//this takes the string and converts it back to object data
+  	var eventInfo = JSON.parse(event.data);
+	  	console.log(eventInfo);
+
+	  	//reference the property for the value you would like to receive
+	  	p3 = eventInfo.player3;
+
+	  	//var p2 = eventInfo.player2;
+	  	draw();
+
+		//pl2Score.textContent = p2;
+		//add more players
+		console.log("player 1 score is " + p1Scr + " player 3 score is " + p3);
+
+
+};
+
+//////////////////////////////////////////////////////////////////////////////////
+
+function draw(){
+
+	if (p3 == 1){
+		    if (i>4){
+		    	i=0;
+		    }
+			c= arrOne[i];
+			xLength = 2500;
+            yLength = 2500;
+            w = 10;
+
+            Line(x, y, xLength, yLength, c, w);
+            console.log( x + " " + y + " " + xLength + " " + yLength + " " + c + " " + w);
+            y=y+20;
+            if (y>500){
+            con.clearRect(0,0, 2500, 2500)
+             y=0;
+          }
+          i++;
+	} else if (p3 == 2) {
+		    if (i>4){
+		    	i=0;
+		    }
+			c= arrTwo[i];
+			xLength = 2500;
+            yLength = 2500;
+            w = 10;
+
+            Line(x, y, xLength, yLength, c, w);
+            console.log( x + " " + y + " " + xLength + " " + yLength + " " + c + " " + w);
+            y=y+20;
+            if (y>500){
+            con.clearRect(0,0, 2500, 2500)
+             y=0;
+            }
+            i++;
+
+	} else {
+			if (i>4){
+		    	i=0;
+		    }
+			c= arrThree[i];
+			xLength = 2500;
+            yLength = 2500;
+            w = 10;
+
+            Line(x, y, xLength, yLength, c, w);
+            console.log( x + " " + y + " " + xLength + " " + yLength + " " + c + " " + w);
+            y=y+20;
+            if (y>500){
+            con.clearRect(0,0, 2500, 2500)
+             y=0;
+          }
+		i++;
+	}
+
+
+
+    // var cIndex = p3;
+    // c= lineColor[cIndex];
+
+    //c=k;
+
+
+}
+//////////////////////////////////////////////////////////////////////////////////
+function Line(x, y, xLength, yLength,  c, w){
+    this.xPos = x;
+
+    this.yPos = y;
+
+    this.xLength = xLength;
+    this.yLength = yLength;
+    //this.plusMinusH = plusMinusH;
+    //this.plusMinusV = plusMinusV;
+    this.clr = c;
+    this.wdth = w;
+
+    con.strokeStyle = this.clr;
+    con.lineWidth = this.wdth;
+
+    //xdir = this.plusMinusH*this.xLength;
+    //ydir = this.plusMinusV*this.yLength;
+    xdir= 1350;
+    ydir= 1350;
+
+    con.beginPath();
+    con.moveTo(this.x, this.y);
+    con.lineTo(this.x + xdir, this.y);
+    con.stroke();
+    con.closePath();
+  }
+
+  setInterval(draw, 500); //I dont think I understand how this works, I want to cr
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+@import "compass/css3";
+
+*{
+  font-family: 'Lobster', cursive;
+}
+
+.circle {
+  background-color: #3B7F6F;
+  height: 40px;
+  width: 40px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+.circle1 {
+  background-color: #F19231;
+  height: 40px;
+  width: 40px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+
+}
+.circle2 {
+  background-color: #DAC0F1;
+  height: 40px;
+  width: 40px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+
+}
+#holder{
+  display: inline-flex;
+}
+h1{
+  margin-left: 75px;
+}
+#center{
+   margin-top: 200px;
+   margin-left: 350px;
+   margin-right: 350px;
+}
+
+
+.circle:hover {
+  background-color: #B8E3B9;
+}
+.circle1:hover {
+  background-color: #F5D0AA;
+}
+.circle2:hover {
+  background-color: #F5E1FF;
+}
+
+

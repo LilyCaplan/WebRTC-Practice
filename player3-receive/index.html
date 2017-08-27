@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<title>receiver-object</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+<link rel="stylesheet" type="text/css" href="prac.css">
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+<script type="text/javascript" src="firebase_3.6.1.js"></script>
+<script type="text/javascript" src="webrtc.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+
+
+
+</head>
+<body>
+
+<div>
+	<!-- <h1>Player 1 score: <span id='plr1'>0</span></h1>
+	<h1>Player 2 score: <span id='plr2'>0</span></h1> -->
+	<!-- <h1>Your Number: <span id='plr3'>0</span></h1> -->
+	<div id="center">
+	  <h1>CLICK A COLOR!</h1>
+      <div id="holder">
+       <a href="#"><figure class="circle"></figure></a>
+       <a href="#"><figure class="circle1"></figure></a>
+       <a href="#"><figure class="circle2"></figure></a>
+      </div>
+    </div>
+
+
+
+	<!-- <button onclick="player3Score()">Click Me!</button> -->
+
+</div>
+
+	<script type="text/javascript">
+
+
+//var pl1Score = document.getElementById("plr1");
+//var pl2Score = document.getElementById("plr2");
+var pl3Score = document.getElementById("plr3");
+
+var arrayPicker = 0;
+
+
+var handleDataChannelMessage = function(event) {
+  // console.log('Recieved Message: ' + event.data);
+
+
+  	//this takes the string and converts it back to object data
+  	var eventInfo = JSON.parse(event.data);
+	  	console.log(eventInfo);
+
+	  	//reference the property for the value you would like to receive
+	  	var p1 = eventInfo.player1;
+	  	var p2 = eventInfo.player2;
+		pl1Score.textContent = p1;
+		pl2Score.textContent = p2;
+		//add more players
+		console.log("player 1 score is " + p1 + " player 2 score is " + p2);
+
+};
+
+ $(".circle").click(function(event){
+        arrayPicker = 1;
+
+		dataChannel.send(JSON.stringify({
+			player3:arrayPicker
+		}));
+       });
+
+ $(".circle1").click(function(event){
+        arrayPicker = 2;
+
+		dataChannel.send(JSON.stringify({
+			player3:arrayPicker
+		}));
+       });
+
+ $(".circle2").click(function(event){
+        arrayPicker = 3;
+
+		dataChannel.send(JSON.stringify({
+			player3:arrayPicker
+		}));
+       });
+
+// function player3Score(){
+// 	//p3  = Math.floor((Math.random() * 7) + 0);
+// 	//pl3Score.textContent = p3;
+
+// 	console.log(p3);
+// 	arrayPicker = 1;
+
+// 		dataChannel.send(JSON.stringify({
+// 			player3:arrayPicker
+// 		}));
+// }
+
+
+</script>
+
+
+
+
+</body>
+</html>

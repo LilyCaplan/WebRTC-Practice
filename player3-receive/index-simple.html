@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<title>simple receiver</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	
+	<script type="text/javascript" src="./build/Tone.js"></script>
+	<script type="text/javascript" src="./scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="./scripts/draggabilly.js"></script>
+	<script type="text/javascript" src="./scripts/StartAudioContext.js"></script>
+	<script type="text/javascript" src="./scripts/Interface.js"></script>
+	<script type="text/javascript" src="https://tonejs.github.io/Logo/build/Logo.js"></script>
+<script type="text/javascript" src="firebase_3.6.1.js"></script>	
+<script type="text/javascript" src="webrtc.js"></script>
+
+
+<!-- 	<link rel="stylesheet" type="text/css" href="./style/examples.css"> -->
+
+	<script type="text/javascript">
+		// jshint ignore: start
+	</script>
+
+</head>
+<body>	
+
+
+<div>
+	<h1>Player 1 score: <span id='p1'>0</span></h1>
+</div>
+
+<script type="text/javascript">
+
+
+
+
+var pl1Score = document.getElementById("p1"); 
+
+
+
+
+var handleDataChannelMessage = function(event) {
+
+		 	var recN = parseInt(event.data);
+			pl1Score.textContent = recN; 
+			console.log("player 1 score is " + recN);
+
+};
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
